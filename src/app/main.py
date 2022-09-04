@@ -15,3 +15,4 @@ async def shutdown():
     await database.disconnect()
 
 app.include_router(ping.router)
+app.include_router(books.router, prefix="/books", tags=["books"])
