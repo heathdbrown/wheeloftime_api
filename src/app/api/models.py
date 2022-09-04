@@ -4,5 +4,5 @@ class BookSchema(BaseModel):
     title: str
     authors: str
 
-class BookDB(NoteSchema):
+class BookDB(BookSchema):
     id: int
