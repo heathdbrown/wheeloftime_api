@@ -13,3 +13,10 @@ async def create_book(payload: BookSchema):
         "authors": payload.authors,
     }
     return response_object
+
+@router.get("/{id}/", response_model=BookDB)
+async def read_book(id: int):
+    book = await crud.get(id)
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return book
