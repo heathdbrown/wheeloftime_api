@@ -41,3 +41,18 @@ def test_read_book_incorrect_id(test_app, monkeypatch):
     response = test_app.get("/books/999")
     assert response.status_code == 404
     assert response.json()["detail"] == "Book not found"
+
+def test_read_all_books(test_app, monkeypatch):
+    test_data = [
+        {"title": "The Eye of the World", "authors": "Robert Jordan", "id": 1},
+        {"title": "The Great Hunt", "authors": "Robert Jordan", "id": 2},
+    ]
+
+    async def mock_get_all():
+        return test_data
+
+    monkeypatch.setattr(crud, "get_all", mock_get_all)
+
+    response = test_app.get("/books/")
+    assert response.status_code == 200
+    assert response.json() == test_data
