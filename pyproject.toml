@@ -38,6 +38,9 @@ path = "wheeloftime_api/__about__.py"
 dependencies = [
   "pytest",
   "pytest-cov",
+  "black",
+  "mypy",
+  "pylint",
 ]
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=wheeloftime_api --cov=tests {args}"
